@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/cesium@1.85.0/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <script src="https://unpkg.com/cesium@1.85.0/Build/Cesium/Cesium.js"></script>    
+    <title>Document</title>
+</head>
+<style>
+    #cesiumContainer {
+      width: 100%;
+      height: 100vh
+    }
+  </style>
+<body>
+    <div id="cesiumContainer"></div>
+
+    <script>
+
+        Cesium.Ion.defaultAccessToken ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3ZDI0NDQ5Zi1kZTdjLTQzMTctODFjZS0wNjkwNTZlNzg5NWIiLCJpZCI6MTY3Nzk0LCJpYXQiOjE2OTUzMDM5ODF9._EaajG9gXqIZOJLVhwKhySSFtU9ENANm8fqkq1brJFU"
+        // Create a Cesium viewer
+        var viewer = new Cesium.Viewer('cesiumContainer', {
+            terrainProvider: Cesium.createWorldTerrain(),
+        });
+
+        // Set the viewer's initial position
+        viewer.camera.flyTo({
+            destination: Cesium.Cartesian3.fromDegrees(
+                -75.0, // Longitude
+                40.0,  // Latitude
+                1000000.0  // Height above the surface
+            ),
+            orientation: {
+                heading: Cesium.Math.toRadians(45.0),  // Heading in radians
+                pitch: Cesium.Math.toRadians(-20.0),   // Pitch in radians
+                roll: 0.0,
+            },
+        });
+
+        // Add a marker at a specific location
+        viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(
+                -80.0,  // Longitude
+                35.0,   // Latitude
+                0.0     // Height above the surface
+            ),
+            point: {
+                pixelSize: 10,
+                color: Cesium.Color.RED,
+            },
+            label: {
+                text: 'Marker Label',
+                verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+            },
+        });
+    </script>
+</body>
+  
+</html>
